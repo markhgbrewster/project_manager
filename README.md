@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple rails app that implements a basic project tool. 
+It tracks changes to a projects status and allow users to comment on the project 
+and tracks comments
 
-Things you may want to cover:
+## Uses
 
-* Ruby version
+* Ruby version: 3.2.1
+* Rails version: 7.0.4
+* PostgreSQL: 14.7
 
-* System dependencies
+## To Run
 
-* Configuration
+* bundle
+* rake db:create
+* rake db:migrate
+* ./bin/dev
+* navigate to http://localhost:3000
 
-* Database creation
 
-* Database initialization
+## To Run the specs
+* rspec spec
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
