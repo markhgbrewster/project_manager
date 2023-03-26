@@ -1,0 +1,11 @@
+.w-full
+  - if notice.present?
+    p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
+      = notice
+  .flex.justify-between.items-center
+    h1.font-bold.text-4xl
+      | Projects
+    = link_to 'New project', new_project_path,
+      class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"
+  #projects.min-w-full
+    = render @projects
