@@ -1,0 +1,19 @@
+nav.flex.items-center.justify-between.flex-wrap.bg-orange-500.p-6
+  .flex.items-center.flex-shrink-0.text-white.mr-6
+    span.font-semibold.text-xl.tracking-tight
+      = link_to 'Projects Tool', root_path
+  .block.lg:hidden
+  .w-full.block.flex-grow.flex.items-center.w-auto.mt-6.sm:mt-0
+    .text-sm.lg:flex-grow
+      - if user_signed_in?
+        .block.mt-4.inline-block.mt-0.text-orange-200.hover:text-white.mr-4
+          = link_to 'Projects', projects_path
+        .block.mt-4.inline-block.mt-0.text-orange-200.hover:text-white.mr-4
+          = link_to 'My Account', edit_user_registration_path(current_user)
+        .block.mt-4.inline-block.mt-0.text-orange-200.hover:text-white.mr-4
+          = link_to 'Log Out', destroy_user_session_path, data: { "turbo-method": :delete }
+      - else
+        .block.mt-4.inline-block.mt-0.text-orange-200.hover:text-white.mr-4
+          = link_to 'Register', new_user_registration_path
+        .block.mt-4.inline-block.mt-0.text-orange-200.hover:text-white.mr-4
+          = link_to 'Log In', new_user_session_path

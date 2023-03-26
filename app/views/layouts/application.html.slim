@@ -10,9 +10,7 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
+    = render 'shared/nav'
     main.container.mx-auto.mt-28.px-5
-      - if notice.present?
-        .mx-auto.md:w-2/3.w-full.flex
-          p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
-            = notice
+      = render 'shared/flash'
       = yield
