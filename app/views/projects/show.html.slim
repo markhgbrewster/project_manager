@@ -1,26 +1,20 @@
-.flex
-  .mx-auto.md:w-1/2.mx-6
-    div.grid.grid-flow-row.auto-rows-max
+.flex.flex-wrap
+  .lg:grid.lg:grid-flow-col
+    .lg:mx-6.lg:col-span-2
       h1.font-bold.text-4xl.my-px-20= @project.title
+
       = simple_form_for(@project, url: project_state_project_path(@project), method: 'PATCH', class: "contents") do |form|
         .my-5
-            = form.input :state, label: 'Status', collection: Project::STATUSES, as: :select, input_html: { onchange: 'this.form.submit();'}
+            = form.input :state, label: 'Status', collection: Project::STATUSES,
+              as: :select, input_html: { onchange: 'this.form.submit();' }
+
       .my-2
         h3.font-bold Description
       div.mt-6.relative.bg-white.px-6.pt-10.pb-8.shadow-xl.ring-1.ring-gray-900/5.sm:rounded-lg.sm:px-10
         = @project.description
-  .mx-auto.md:w-1/2.mx-6
-    div.grid.grid-flow-row.auto-rows-max
-      h1.font-bold.text-4xl.my-px-20 History
-      table.table-auto.my-6
-        thead
-          th Date
-          th Description
-        tbody
-          - @histories.each do |history|
-            tr
-              td= history.created_at.strftime('%Y/%m/%d %H:%M')
-              td= history.description
-          tr
-            td= @project.created_at.strftime('%Y/%m/%d %H:%M')
-            td= "Project Created by #{@project.user.full_name}"
+
+      .my-12
+        =render 'comments', project: @project, comments: @comments
+
+    .lg:mx-6.lg:col-span-2.:lg:mt-0.mt-6
+      = render 'histories_table', project: @project, histories: @histories

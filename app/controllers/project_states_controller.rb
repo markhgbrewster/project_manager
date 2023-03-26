@@ -9,14 +9,8 @@ class ProjectStatesController < ApplicationController
         format.html do
           redirect_to project_url(@project), notice: success_notice
         end
-
-        format.json { render 'projects/show', status: :ok, location: @project }
       else
-        format.html { render 'projects/show', status: :unprocessable_entity }
-
-        format.json do
-          render json: @project.errors, status: :unprocessable_entity
-        end
+        format.html { head :unprocessable_entity }
       end
     end
   end

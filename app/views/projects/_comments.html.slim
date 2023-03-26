@@ -1,6 +1,6 @@
-= simple_form_for(comments.new, url: comments_path(project), class: "contents") do |form|
+= simple_form_for(comments.new, url: comments_path(project), class: "contents",  html: { novalidate: false }) do |form|
   .my-5
-    = form.input :message, as: :text, label: 'Comment'
+    = form.input :message, as: :text, label: 'Comment', required: true
   div.inline-block.mt-1
     = form.button :submit, 'Add Comment'
 - if comments.present?

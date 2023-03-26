@@ -1,0 +1,9 @@
+h1.font-bold.text-4xl.lg:my-px-20.mb-10 History
+- histories.each do |history|
+  .my-2
+    p= history.created_at.strftime('%Y/%m/%d %H:%M')
+    p= history.description
+  hr
+.my-2
+  p= project.created_at.strftime('%Y/%m/%d %H:%M')
+  p= "Project Created by #{project.user.full_name}"
