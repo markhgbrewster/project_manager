@@ -5,4 +5,20 @@
     = link_to 'New project', new_project_path,
       class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"
   #projects.min-w-full
-    = render @projects
+    - @projects.each do |project|
+        .mt-2.mb-6
+          = project.title
+          .mt-2
+            = link_to 'View',
+              project_path(project),
+              class: "bg-green-500 hover:bg-green-200 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
+            - if project.user_id == current_user.id
+              = link_to 'Edit',
+                edit_project_path(project),
+                class: "bg-blue-500 hover:bg-blue-200 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
+              = link_to 'Delete',
+                project_path(project),
+                method: :delete,
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this #{project.title}" },
+                class: "bg-red-500 hover:bg-red-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        hr
