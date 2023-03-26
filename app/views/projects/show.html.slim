@@ -6,7 +6,8 @@
       = simple_form_for(@project, url: project_state_project_path(@project), method: 'PATCH', class: "contents") do |form|
         .my-5
             = form.input :state, label: 'Change Status', collection: Project::STATUSES,
-              as: :select, input_html: { onchange: 'this.form.submit();' }
+              as: :select, input_html: { onchange: 'this.form.submit();' },
+              include_blank: false, include_hidden: false
 
       .my-2
         h3.font-bold Description
