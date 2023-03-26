@@ -1,0 +1,7 @@
+FactoryBot.define do
+  factory :comment do
+    message { "MyText" }
+    user { nil }
+    commentable { nil }
+  end
+end
