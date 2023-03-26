@@ -6,6 +6,8 @@ class ProjectStatesController < ApplicationController
   before_action :authenticate_user!, :set_project
 
   def update
+    @old_status = @project.state.humanize.capitalize
+
     respond_to do |format|
       if @project.update(project_params) && logged_history(@project)
         format.html do
@@ -24,7 +26,7 @@ class ProjectStatesController < ApplicationController
   end
 
   def message_for_history
-    "#{current_user.full_name} changed the status to #{new_state}"
+    "#{current_user.full_name} changed the status from #{@old_status} to #{new_state}"
   end
 
   def new_state

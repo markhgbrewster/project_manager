@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
   end
 
   def message_for_history
-    "#{current_user.full_name} commented on project"
+    "#{current_user.full_name} commented: '#{@comment.message}'"
   end
 
   def comment_params
