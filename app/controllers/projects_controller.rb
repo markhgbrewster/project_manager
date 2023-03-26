@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @histories = @project.project_histories.order(created_at: :desc)
   end
 
   def new

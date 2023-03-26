@@ -3,21 +3,8 @@ require 'rails_helper'
 RSpec.describe '/projects', type: :request do
   let(:user) { FactoryBot.create(:user) }
 
-  let(:valid_params) do
-    {
-      title: 'TEST',
-      description: 'TEST',
-      state: 'backlog'
-    }
-  end
-
-  let(:invalid_params) do
-    {
-      title: nil,
-      description: nil,
-      state: nil
-    }
-  end
+  let(:valid_params) { { title: 'TEST', description: 'TEST' } }
+  let(:invalid_params) { { title: nil, description: nil } }
 
   let(:project) do
     FactoryBot.create(
@@ -106,6 +93,8 @@ RSpec.describe '/projects', type: :request do
       before { sign_in(user, scope: :user) }
 
       context 'when valid parameters are sent' do
+        let(:expected_attributes) { { title: 'TEST', description: 'TEST', state: 'backlog' } }
+
         it 'creates a new Project' do
           expect {
             post projects_url, params: { project: valid_params }
@@ -119,7 +108,7 @@ RSpec.describe '/projects', type: :request do
 
         it 'show have the correct attributes' do
           post projects_url, params: { project: valid_params }
-          expect(Project.last).to have_attributes(valid_params)
+          expect(Project.last).to have_attributes(expected_attributes)
         end
       end
 
@@ -166,14 +155,6 @@ RSpec.describe '/projects', type: :request do
       end
 
       context 'with invalid parameters' do
-        let(:invalid_params) do
-          {
-            title: nil,
-            description: nil,
-            state: nil
-          }
-        end
-
         it 'renders a response with 422 status' do
           patch project_url(project), params: { project: invalid_params }
           expect(response).to have_http_status(:unprocessable_entity)
