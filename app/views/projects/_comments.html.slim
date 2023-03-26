@@ -1,0 +1,18 @@
+= simple_form_for(comments.new, url: comments_path(project), class: "contents") do |form|
+  .my-5
+    = form.input :message, as: :text, label: 'Comment'
+  div.inline-block.mt-1
+    = form.button :submit, 'Add Comment'
+- if comments.present?
+  h3.font-bold.mt-5 Comments
+  - comments.each do |comment|
+    article.p-6.mb-6.text-base.bg-white.rounded-lg.border-1
+      .flex.justify-between.items-center.mb-2
+        .flex.items-center
+          p.inline-flex.items-center.mr-3.text-sm.text-gray-900
+            = comment.user.full_name
+          p.text-sm.text-gray-600.dark:text-gray-400
+            = comment.created_at.strftime('%Y/%m/%d %H:%M')
+      p.text-gray-500.dark:text-gray-400
+        = comment.message
+    hr

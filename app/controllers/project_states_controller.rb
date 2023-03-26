@@ -1,10 +1,11 @@
 class ProjectStatesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_project
+  include HistoryLoggable
+
+  before_action :authenticate_user!, :set_project
 
   def update
     respond_to do |format|
-      if @project.update(project_params) && logged_history
+      if @project.update(project_params) && logged_history(@project)
         format.html do
           redirect_to project_url(@project), notice: success_notice
         end
@@ -26,10 +27,8 @@ class ProjectStatesController < ApplicationController
     "Project's status successfully changed to #{new_state}"
   end
 
-  def logged_history
-    message = "#{current_user.full_name} changed the status to #{new_state}"
-
-    @project.project_histories.create(user: current_user, description: message)
+  def message_for_history
+    "#{current_user.full_name} changed the status to #{new_state}"
   end
 
   def new_state
