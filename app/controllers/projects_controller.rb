@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.new(project_params)
+    @project.state = 'backlog'
 
     respond_to do |format|
       if @project.save
@@ -59,6 +60,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :description, :state)
+    params.require(:project).permit(:title, :description)
   end
 end

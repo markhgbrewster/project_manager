@@ -1,13 +1,9 @@
 = simple_form_for(@project, class: "contents") do |form|
-
   .my-5
     = form.input :title,
       input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" }
   .my-5
     = form.input :description,
-      input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" }
-  .my-5
-    = form.input :state,
       input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" }
   div.inline-block.mt-10
     = form.button :submit,
