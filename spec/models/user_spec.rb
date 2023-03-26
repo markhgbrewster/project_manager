@@ -15,4 +15,14 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password) }
   end
+
+  describe '#full_name' do
+    let(:user) do
+      FactoryBot.create(:user, first_name: 'Bob', last_name: 'Jones')
+    end
+
+    it 'returns the full name' do
+      expect(user.full_name).to eql('Bob Jones')
+    end
+  end
 end

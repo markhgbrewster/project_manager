@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   ALLOWED_STATES = %w[backlog in_progress in_review on_hold complete closed].freeze
+  STATUSES = ALLOWED_STATES.map { |status| [status.humanize.capitalize, status] }.freeze
 
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
