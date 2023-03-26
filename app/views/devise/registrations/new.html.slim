@@ -1,10 +1,16 @@
 .h-full.w-full.max-w-xs.mx-auto.align-middle
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'}) do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' }) do |f|
     h2.text-center
       | Register
     = render "devise/shared/error_messages", resource: resource
     - label_classes = "block text-sm font-bold mb-2 #{alert ? "text-red-500" : "text-gray-700"}"
     - input_classes = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline #{alert ? "border-red-500" : nil}"
+    .mb-4
+      = f.label :first_name, "First Name", class: label_classes
+      = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: input_classes
+    .mb-4
+      = f.label :last_name, "Last Name", class: label_classes
+      = f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: input_classes
     .mb-4
       = f.label :email, "Email", class: label_classes
       = f.email_field :email, autofocus: true, autocomplete: "email", class: input_classes
