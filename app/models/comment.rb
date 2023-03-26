@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
   # I prefer to ues ".name" rather than a hard coded string for class names
   # As it will fail hard if there are any typos or the class name get changed

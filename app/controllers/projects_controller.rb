@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[edit update destroy]
@@ -16,8 +18,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @project = current_user.projects.new(project_params)
